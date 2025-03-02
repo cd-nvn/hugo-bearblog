@@ -21,6 +21,49 @@
   Simply place a custom_head.html into
   your local /layouts/partials-directory -->
   {{- partial "custom_head.html" . -}}
+
+<!-- JSON-LD Schema for Blog Posts -->
+{{ if eq .Type "blog" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Params.author | default "Navin" }}"
+  },
+  "datePublished": "{{ .Date.Format "2006-01-02" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+  "image": "{{ .Params.featured_image | default (print .Site.BaseURL "images/notesbynavin.webp") }}",
+  "description": "{{ .Description | default .Summary }}",
+  "url": "{{ .Permalink }}",
+  "mainEntityOfPage": {
+    "@type": "BlogPosting",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+{{ end }}
+
+<!-- JSON-LD Schema for Pages (WebPage) with Featured Image -->
+{{ if eq .Type "page" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "headline": "{{ .Title }}",
+  "description": "{{ .Description | default .Summary }}",
+  "image": "{{ .Params.featured_image | default (print .Site.BaseURL "images/notesbynavin.webp") }}",
+  "url": "{{ .Permalink }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+{{ end }}
+
 </head>
 
 <body>
