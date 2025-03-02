@@ -35,7 +35,7 @@
   },
   "datePublished": "{{ .Date.Format "2006-01-02" }}",
   "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
-  "image": "{{ .Params.featured_image | default (print .Site.BaseURL "images/notesbynavin.webp") }}",
+  "image": "{{ .Params.featured_image | default (print .Site.BaseURL "/images/notesbynavin.webp") }}",
   "description": "{{ .Description | default .Summary }}",
   "url": "{{ .Permalink }}",
   "mainEntityOfPage": {
@@ -54,7 +54,7 @@
   "@type": "WebPage",
   "headline": "{{ .Title }}",
   "description": "{{ .Description | default .Summary }}",
-  "image": "{{ .Params.featured_image | default (print .Site.BaseURL "images/notesbynavin.webp") }}",
+  "image": "{{ .Params.featured_image | default (print .Site.BaseURL "/images/notesbynavin.webp") }}",
   "url": "{{ .Permalink }}",
   "mainEntityOfPage": {
     "@type": "WebPage",
